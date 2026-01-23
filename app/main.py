@@ -1,0 +1,12 @@
+from fastapi import FastAPI
+from app.core.config import settings
+from app.routers import health, auth
+
+app = FastAPI(title=settings.PROJECT_NAME)
+
+@app.get("/", include_in_schema=False)
+async def root():
+    return {"message": "Welcome to FastAPI Backend", "docs": "/docs"}
+
+app.include_router(health.router)
+app.include_router(auth.router)
