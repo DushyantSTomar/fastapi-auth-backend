@@ -1,6 +1,6 @@
 from fastapi import FastAPI
 from app.core.config import settings
-from app.routers import health, auth
+from app.routers import health, auth, users
 
 app = FastAPI(title=settings.PROJECT_NAME)
 
@@ -10,3 +10,4 @@ async def root():
 
 app.include_router(health.router)
 app.include_router(auth.router)
+app.include_router(users.router)
